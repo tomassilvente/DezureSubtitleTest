@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from "react";
 export const useAudioPlayer = () => {
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
-    const audioRef = useRef<HTMLAudioElement>(null);
+    const audioRef = useRef<HTMLAudioElement | null>();
   
     useEffect(() => {
       const audio = audioRef.current;
   
+      if(audio){
       const handleTimeUpdate = () => {
         setCurrentTime(audio.currentTime);
       };
@@ -35,10 +36,13 @@ export const useAudioPlayer = () => {
         audio.removeEventListener('pause', handlePause);
         audio.removeEventListener('seeked', handleSeeked);
       };
+    }
     }, []);
   
     const goToTime = (time:number) => {
-      audioRef.current.currentTime = time;
+      if(audioRef.current){
+        audioRef.current.currentTime = time;
+      }
     };
   
     return { currentTime, isPlaying, audioRef, goToTime };
