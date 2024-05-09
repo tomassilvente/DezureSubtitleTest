@@ -43,8 +43,8 @@ export const Audio = () => {
     })
      
   return (
-    <div className="text-lg">
-      <div className='lg:hidden mx-auto w-[85%] h-[475px] overflow-scroll'>
+    <div className="text-lg ">
+      <div className='lg:hidden mx-auto w-[85%] h-[475px] overflow-scroll bg-[#ffffffa0] rounded-xl'>
           {conversationArray.map(({end, start, content, role} )=>(
             <Mensaje key={end} end={end} start={start} content={content} role={role} goToTime={goToTime} currentTime={currentTime}/>
               ))}
